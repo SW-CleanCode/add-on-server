@@ -10,16 +10,16 @@ class Robot(
     var id: UUID? = null,
 
     @Column(nullable = false)
-    var nowX: Int,
+    var x: Int,
 
     @Column(nullable = false)
-    var nowY: Int,
+    var y: Int,
 ) {
     companion object {
         fun createNewRobot(nowX: Int, nowY: Int): Robot {
             return Robot(
-                nowX = nowX,
-                nowY = nowY,
+                x = nowX,
+                y = nowY,
             )
         }
     }
