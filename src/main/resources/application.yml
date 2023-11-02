@@ -16,3 +16,15 @@ spring:
         default_batch_fetch_size: 1000
         show_sql: true
         format_sql: true
+
+springdoc:
+    swagger-ui:
+        path: /api/
+        operationsSorter: method
+        disable-swagger-default-url: true
+        display-request-duration: true
+    api-docs:
+        path: /api/api-docs
+    show-actuator: true
+    default-consumes-media-type: application/json
+    default-produces-media-type: application/json
