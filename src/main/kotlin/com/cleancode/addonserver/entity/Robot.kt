@@ -14,4 +14,13 @@ class Robot(
 
     @Column(nullable = false)
     var nowY: Int,
-)
+) {
+    companion object {
+        fun createNewRobot(nowX: Int, nowY: Int): Robot {
+            return Robot(
+                nowX = nowX,
+                nowY = nowY,
+            )
+        }
+    }
+}

@@ -10,11 +10,20 @@ class Map(
     var id: UUID? = null,
 
     @Column(nullable = false)
-    var maxX: Int,
+    var width: Int,
 
     @Column(nullable = false)
-    var maxY: Int,
+    var height: Int,
 
     @OneToMany(mappedBy = "map")
-    var statefulCoordinates: List<StatefulCoordinates> = mutableListOf(),
-)
+    var statefulCoordinates: List<StatefulCoordinate> = mutableListOf(),
+) {
+    companion object {
+        fun createNewMap(width: Int, height: Int): Map {
+            return Map(
+                width = width,
+                height = height,
+            )
+        }
+    }
+}
