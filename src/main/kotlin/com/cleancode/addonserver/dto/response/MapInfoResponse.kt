@@ -5,8 +5,8 @@ import com.cleancode.addonserver.entity.Map
 import com.cleancode.addonserver.entity.StatefulCoordinate
 
 data class MapInfoResponse(
-    val mapWidth: Int,
-    val mapHeight: Int,
+    val width: Int,
+    val height: Int,
     val statefulCoordinates: List<CoordinateDTO>,
 ) {
 
