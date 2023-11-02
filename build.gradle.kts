@@ -25,8 +25,17 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // h2
     runtimeOnly("com.h2database:h2")
+
+    // mysql
     runtimeOnly("com.mysql:mysql-connector-j")
+
+    // swagger
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4")
+
+    // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
