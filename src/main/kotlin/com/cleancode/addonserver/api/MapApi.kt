@@ -55,4 +55,15 @@ class MapApi(
                 ),
             )
     }
+
+    @Operation(
+        summary = "맵에 중요 지점, 위험 지점 추가",
+    )
+    @PostMapping("/stateful-coordinates")
+    fun addStatefulCoordinates(): ResponseEntity<Unit> {
+        val statefulCoordinates = mapService.addStatefulCoordinates()
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .build()
+    }
 }

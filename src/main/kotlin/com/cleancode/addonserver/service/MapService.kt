@@ -37,4 +37,8 @@ class MapService(
 
         return Pair(createdMap, createdStatefulCoordinates)
     }
+
+    @Transactional
+    fun addStatefulCoordinates(): List<StatefulCoordinate> {
+    }
 }
