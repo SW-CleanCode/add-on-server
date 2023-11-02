@@ -27,6 +27,7 @@ data class MapRobotSetupRequest(
 
     @field:NotNull
     val robotInitialY: Int,
+
     val importantSpots: List<Spot>,
     val hazardSpots: List<Spot>,
 ) {

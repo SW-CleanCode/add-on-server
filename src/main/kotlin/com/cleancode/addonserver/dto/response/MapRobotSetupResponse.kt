@@ -1,5 +1,6 @@
 package com.cleancode.addonserver.dto.response
 
+import com.cleancode.addonserver.dto.CoordinateDTO
 import com.cleancode.addonserver.entity.Map
 import com.cleancode.addonserver.entity.Robot
 import com.cleancode.addonserver.entity.StatefulCoordinate
@@ -9,7 +10,7 @@ data class MapRobotSetupResponse(
     val mapHeight: Int,
     val robotX: Int,
     val robotY: Int,
-    val statefulCoordinates: List<StatefulCoordinate>,
+    val statefulCoordinates: List<CoordinateDTO>,
 ) {
 
     companion object {
@@ -21,9 +22,9 @@ data class MapRobotSetupResponse(
             return MapRobotSetupResponse(
                 map.width,
                 map.height,
-                robot.nowX,
-                robot.nowY,
-                statefulCoordinates,
+                robot.x,
+                robot.y,
+                statefulCoordinates.map { CoordinateDTO.createCoordinatesDTO(it) },
             )
         }
     }

@@ -16,7 +16,7 @@ class Map(
     var height: Int,
 
     @OneToMany(mappedBy = "map")
-    var statefulCoordinates: List<StatefulCoordinate> = mutableListOf(),
+    var statefulCoordinates: MutableList<StatefulCoordinate> = mutableListOf(),
 ) {
     companion object {
         fun createNewMap(width: Int, height: Int): Map {

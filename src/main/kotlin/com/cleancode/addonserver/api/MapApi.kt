@@ -1,6 +1,7 @@
 package com.cleancode.addonserver.api
 
 import com.cleancode.addonserver.dto.request.MapRobotSetupRequest
+import com.cleancode.addonserver.dto.response.MapInfoResponse
 import com.cleancode.addonserver.dto.response.MapRobotSetupResponse
 import com.cleancode.addonserver.service.MapService
 import com.cleancode.addonserver.service.RobotService
@@ -8,10 +9,7 @@ import io.swagger.v3.oas.annotations.Operation
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/map")
@@ -20,10 +18,24 @@ class MapApi(
     private val robotService: RobotService,
 ) {
 
+    @Operation(summary = "맵 정보 반환")
+    @GetMapping
+    fun getMap(): ResponseEntity<MapInfoResponse> {
+        val (map, statefulCoordinates) = mapService.getMapAndStatefulCoordinates()
+
+        return ResponseEntity.ok()
+            .body(
+                MapInfoResponse.createMapInfoResponse(
+                    map,
+                    statefulCoordinates,
+                ),
+            )
+    }
+
     @Operation(
         summary = "맵 생성 및 로봇 생성",
     )
-    @PostMapping("")
+    @PostMapping
     fun createMap(
         @RequestBody @Valid
         mapRobotSetupRequest: MapRobotSetupRequest,
@@ -34,8 +46,7 @@ class MapApi(
             mapRobotSetupRequest,
         )
 
-        return ResponseEntity
-            .status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.CREATED)
             .body(
                 MapRobotSetupResponse.createMapRobotSetupResponse(
                     map,
