@@ -17,6 +17,17 @@ enum class ErrorCode(val code: String, val message: String, var status: Int) {
         HttpStatus.INTERNAL_SERVER_ERROR.value(),
     ),
 
+    //Map
+    MAP_NOT_FOUND("M01", "Map is Not Found.", HttpStatus.BAD_REQUEST.value()),
+
+    //Robot
+    INVALID_ROBOT_POSITION(
+        "R01",
+        "Robot Position is Invalid.",
+        HttpStatus.BAD_REQUEST.value(),
+    ),
+    ROBOT_NOT_FOUND("R02", "Robot is Not Found.", HttpStatus.BAD_REQUEST.value()),
+
     // External API
     EXTERNAL_API_FAILED(
         "E01",
