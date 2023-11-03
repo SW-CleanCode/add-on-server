@@ -1,6 +1,7 @@
 package com.cleancode.addonserver.api
 
 import com.cleancode.addonserver.dto.request.MapRobotSetupRequest
+import com.cleancode.addonserver.dto.request.MapStatefulCoordinateRegisterRequest
 import com.cleancode.addonserver.dto.response.MapInfoResponse
 import com.cleancode.addonserver.dto.response.MapRobotSetupResponse
 import com.cleancode.addonserver.service.MapService
@@ -60,10 +61,15 @@ class MapApi(
         summary = "맵에 중요 지점, 위험 지점 추가",
     )
     @PostMapping("/stateful-coordinates")
-    fun addStatefulCoordinates(): ResponseEntity<Unit> {
-        val statefulCoordinates = mapService.addStatefulCoordinates()
+    fun addStatefulCoordinates(
+        @RequestBody @Valid
+        mapStatefulCoordinateRegisterRequest: MapStatefulCoordinateRegisterRequest,
+    ): ResponseEntity<MapInfoResponse> {
+        val (map, statefulCoordinates) = mapService.addStatefulCoordinates(
+            mapStatefulCoordinateRegisterRequest,
+        )
 
         return ResponseEntity.status(HttpStatus.CREATED)
-            .build()
+            .body(MapInfoResponse.createMapInfoResponse(map, statefulCoordinates))
     }
 }

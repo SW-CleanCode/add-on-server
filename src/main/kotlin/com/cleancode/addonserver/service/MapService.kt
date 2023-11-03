@@ -1,6 +1,7 @@
 package com.cleancode.addonserver.service
 
 import com.cleancode.addonserver.dto.request.MapRobotSetupRequest
+import com.cleancode.addonserver.dto.request.MapStatefulCoordinateRegisterRequest
 import com.cleancode.addonserver.entity.Map
 import com.cleancode.addonserver.entity.StatefulCoordinate
 import com.cleancode.addonserver.error.exception.map.MapNotFoundException
@@ -39,6 +40,14 @@ class MapService(
     }
 
     @Transactional
-    fun addStatefulCoordinates(): List<StatefulCoordinate> {
+    fun addStatefulCoordinates(
+        mapStatefulCoordinateRegisterRequest: MapStatefulCoordinateRegisterRequest,
+    ): Pair<Map, List<StatefulCoordinate>> {
+        val map = mapRepository.findAll().firstOrNull() ?: throw MapNotFoundException()
+        val newStatefulCoordinates = mapStatefulCoordinateRegisterRequest
+            .getStatefulCoordinates(map)
+        // 좌표 중복 삽입 방지 추가 필요
+        statefulCoordinateRepository.saveAll(newStatefulCoordinates)
+        return Pair(map, statefulCoordinateRepository.findAllByMap(map))
     }
 }
