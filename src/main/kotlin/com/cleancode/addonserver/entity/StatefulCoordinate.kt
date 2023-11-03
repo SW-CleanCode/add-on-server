@@ -37,4 +37,8 @@ class StatefulCoordinate(
             )
         }
     }
+
+    fun visit() {
+        this.isVisited = true
+    }
 }

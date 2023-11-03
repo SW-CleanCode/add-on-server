@@ -19,6 +19,17 @@ enum class ErrorCode(val code: String, val message: String, var status: Int) {
 
     //Map
     MAP_NOT_FOUND("M01", "Map is Not Found.", HttpStatus.BAD_REQUEST.value()),
+    STATEFUL_COORDINATE_NOT_FOUND(
+        "M02",
+        "Stateful Coordinate is Not Found.",
+        HttpStatus.BAD_REQUEST.value(),
+    ),
+    NO_MORE_IMPORTANT_COORDINATE(
+        "M03",
+        "There is no more important coordinate.",
+        HttpStatus.BAD_REQUEST.value(),
+    ),
+    ROUTE_NOT_FOUND("M04", "Route is Not Found.", HttpStatus.BAD_REQUEST.value()),
 
     //Robot
     INVALID_ROBOT_POSITION(

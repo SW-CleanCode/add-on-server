@@ -23,4 +23,9 @@ class Robot(
             )
         }
     }
+
+    fun move(x: Int, y: Int) {
+        this.x = x
+        this.y = y
+    }
 }
