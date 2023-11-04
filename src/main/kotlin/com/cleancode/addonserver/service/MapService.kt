@@ -67,7 +67,7 @@ class MapService(
         val map = mapRepository.findAll().firstOrNull() ?: throw MapNotFoundException()
         val newStatefulCoordinates = mapStatefulCoordinateRegisterRequest
             .getStatefulCoordinates(map)
-        // 좌표 중복 삽입 방지 추가 필요
+
         statefulCoordinateRepository.saveAll(newStatefulCoordinates)
         return Pair(map, statefulCoordinateRepository.findAllByMap(map))
     }
