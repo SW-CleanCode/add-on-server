@@ -29,7 +29,8 @@ class RobotService(
     fun moveRobotToNearestImportantCoordinate(
         robotPosition: RobotInfoResponse,
     ) {
-        val robot = robotRepository.findAll().firstOrNull() ?: throw RobotNotFoundException()
+        val robot = robotRepository.findAll().firstOrNull()
+            ?: throw RobotNotFoundException()
         robot.move(robotPosition.nowX, robotPosition.nowY)
     }
 

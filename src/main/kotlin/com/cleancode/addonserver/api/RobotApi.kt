@@ -29,7 +29,7 @@ class RobotApi(
     @Operation(summary = "현재 위치에서 가장 가까운 탐색 지점으로 로봇 위치 이동")
     @PostMapping("/move")
     fun moveRobotToNearestPoint(): ResponseEntity<RobotImportantCoordinateVisitResponse> {
-        val (movementPath, robotInfoResponse) =
+        val (movementPath, robotInfoResponse, randomEventResponse) =
             mapService.getNearestImportantCoordinateAndVisitIt()
         robotService.moveRobotToNearestImportantCoordinate(robotInfoResponse)
 
@@ -39,6 +39,7 @@ class RobotApi(
                     .createRobotImportantCoordinateVisitResponse(
                         robotInfoResponse,
                         movementPath,
+                        randomEventResponse,
                     ),
             )
     }

@@ -23,7 +23,7 @@ class BFSPathFinder : PathfindingAlgorithm {
         start: SpotDTO,
         target: SpotDTO,
         hazards: Set<SpotDTO>,
-    ): List<SpotDTO> {
+    ): MutableList<SpotDTO> {
         val path: MutableList<SpotDTO> = mutableListOf()
         val visited = mutableSetOf<SpotDTO>()
         val visitedDirections = Array(map.width + 1) { IntArray(map.height + 1) }
