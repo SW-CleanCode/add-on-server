@@ -100,11 +100,11 @@ class MapService(
             hazardStatefulCoordinates,
             movementPath,
         )
-        val importDetectEventResponse = importDetectEvent(map, movementPath)
+        val importantDetectEventResponse = importantDetectEvent(map, movementPath)
         val randomEventResponse = RandomEventResponse
             .createRandomEventResponse(
                 hazardDetectEventResponse,
-                importDetectEventResponse,
+                importantDetectEventResponse,
             )
 
         return Triple(
@@ -154,7 +154,7 @@ class MapService(
         return unpredictableHazard
     }
 
-    private fun importDetectEvent(
+    private fun importantDetectEvent(
         map: Map,
         movementPath: MutableList<SpotDTO>,
     ): StatefulCoordinate? {
